@@ -124,7 +124,8 @@ class HBNBCommand(cmd.Cmd):
                 splited_arg = arg.split("=")
                 splited_arg[1] = eval(splited_arg[1])
                 if type(splited_arg[1]) is str:
-                    splited_arg[1] = splited_arg[1].replace("_", " ").replace('"', '\\"')
+                    splited_arg[1] = splited_arg[1].replace("_", " ")\
+                            .replace('"', '\\"')
                 kwargs[splited_arg[0]] = splited_arg[1]
         except SyntaxError:
             print("** class name missing **")
@@ -195,7 +196,7 @@ class HBNBCommand(cmd.Cmd):
         key = c_name + "." + c_id
 
         try:
-            del(storage.all()[key])
+            del storage.all()[key]
             storage.save()
         except KeyError:
             print("** no instance found **")
@@ -326,6 +327,6 @@ class HBNBCommand(cmd.Cmd):
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
 
+
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
-
