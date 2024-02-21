@@ -142,9 +142,7 @@ class TestAmenity(unittest.TestCase):
         old = self.amenity.updated_at
         self.amenity.save()
         self.assertLess(old, self.amenity.updated_at)
-        db = MySQLdb.connect(user="hbnb_test",
-                             passwd="hbnb_test_pwd",
-                             db="hbnb_test_db")
+        db = MySQLdb.connect(user="hbnb_test", passwd="hbnb_test_pwd", db="hbnb_test_db")
         cursor = db.cursor()
         cursor.execute("SELECT * \
                           FROM `amenities` \
