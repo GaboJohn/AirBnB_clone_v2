@@ -119,18 +119,27 @@ class HBNBCommand(cmd.Cmd):
             if not args:
                 raise SyntaxError()
             argument_list = args.split(" ")
+            class_name =argument_list[0]
             kwargs = {}
+
             for args in argument_list[1:]:
                 splited_arg = arg.split("=")
                 splited_arg[1] = eval(splited_arg[1])
+
                 if type(splited_arg[1]) is str:
                     splited_arg[1] = splited_arg[1].replace("_", " ")\
                             .replace('"', '\\"')
+
                 kwargs[splited_arg[0]] = splited_arg[1]
+            if class_name == 'State' and 'name' is not kwargs:
+                print("** 'name' attribute is missing State class**")
+                return
+
         except SyntaxError:
             print("** class name missing **")
         except NameError:
             print("** class doesn't exist **")
+
         new_instance = HBNBCommand.classes[argument_list[0]](**kwargs)
         new_instance.save()
         print(new_instance.id)

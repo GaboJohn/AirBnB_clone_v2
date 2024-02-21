@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""This is the file storage class for AirBnB"""
+"""This is the file storage"""
 import json
 from models.base_model import BaseModel
 from models.user import User
@@ -30,9 +30,9 @@ class FileStorage:
         if cls:
             dictionary = self.__objects
             for key in dictionary:
-                partition = key.replace('.', ' ')
-                partition = shlex.split(partition)
-                if (partition[0] == cls.__name__):
+                part = key.replace('.', ' ')
+                part = shlex.split(part)
+                if (part[0] == cls.__name__):
                     dic_t[key] = self.__objects[key]
             return (dic_t)
         else:
@@ -78,4 +78,3 @@ class FileStorage:
         """ calls reload()
         """
         self.reload()
-
