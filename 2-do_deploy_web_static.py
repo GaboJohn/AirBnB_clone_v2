@@ -31,6 +31,5 @@ def do_deploy(archive_path):
         run('ln -s {0}{1}/ /data/web_static/current'.format(path, exile))
         print('New version deployed!')
         return True
-    except Exception as e:
-        print(e)
+    except:
         return False
